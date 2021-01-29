@@ -31,17 +31,19 @@ function createListItem(inputValue) {
   const li = document.createElement('li');
   const liContent = document.createTextNode(inputValue);
 
-  const btn = createButton(inputValue);
+  const onDeleteWithLi = deleteHandler.bind(li);
+
+  const btn = createDeleteButton(inputValue, onDeleteWithLi);
   li.append(liContent, btn);
   return li;
 }
 
-function createButton(value) {
+function createDeleteButton(value, onDelete) {
   const btn = document.createElement('button');
   btn.dataset.todoValue = value;
   btn.textContent = 'X';
 
-  btn.addEventListener('click', deleteHandler);
+  btn.addEventListener('click', onDelete);
 
   return btn;
 }
@@ -51,13 +53,15 @@ function createButton(value) {
 function deleteHandler(event) {
   const {
     target: {
-      parentNode,
       dataset: { todoValue },
     },
   } = event;
 
-  parentNode.remove();
+  console.log(this);
+
+  this.remove();
   console.log(todoValue);
+  
   const index = state.indexOf(todoValue);
   state.splice(index, 1);
 }
