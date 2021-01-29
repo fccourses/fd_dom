@@ -7,6 +7,18 @@
 * {
   box-sizing: border-box;
 }
+
+/* HOVER ON SVG ELEMENT */
+
+.icon {
+  width: 40px;
+  height: 40px;
+}
+
+.icon:hover {
+  fill: red;
+}
+
 .imagePlaceholder {
   color: white;
   display: flex;
