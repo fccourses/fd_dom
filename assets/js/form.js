@@ -31,13 +31,14 @@ function createListItem(inputValue) {
   const li = document.createElement('li');
   const liContent = document.createTextNode(inputValue);
 
-  const btn = createButton();
+  const btn = createButton(inputValue);
   li.append(liContent, btn);
   return li;
 }
 
-function createButton() {
+function createButton(value) {
   const btn = document.createElement('button');
+  btn.dataset.todoValue = value;
   btn.textContent = 'X';
 
   btn.addEventListener('click', deleteHandler);
@@ -45,9 +46,18 @@ function createButton() {
   return btn;
 }
 
-function deleteHandler(event) {
-  /* magic to delete element */
-}
-
 /* Кнопка удаления у li'шки - удаляет элемент со стрн и 
     его значение из массива */
+function deleteHandler(event) {
+  const {
+    target: {
+      parentNode,
+      dataset: { todoValue },
+    },
+  } = event;
+
+  parentNode.remove();
+  console.log(todoValue);
+  const index = state.indexOf(todoValue);
+  state.splice(index, 1);
+}
