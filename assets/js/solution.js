@@ -16,12 +16,19 @@ document.body.append(...icons);
  * @param {Array<string>} contacts
  */
 function createIcons(contacts) {
-  return contacts.map((contact) => {
+  const arrayOfIconElements = contacts.map((contact) => {
     const { hostname } = new URL(contact);
-    const cssClasses = supportedSocialNetworks.get(hostname);
-    const a = document.createElement('a');
-    a.setAttribute('href', contact);
-    a.setAttribute('class', cssClasses);
-    return a;
+
+    if (supportedSocialNetworks.has(hostname)) {
+      const cssClasses = supportedSocialNetworks.get(hostname);
+
+      const a = document.createElement('a');
+      a.setAttribute('href', contact);
+      a.setAttribute('class', cssClasses);
+      return a;
+    }
+    return;
   });
+
+  return arrayOfIconElements;
 }

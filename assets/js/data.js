@@ -14,6 +14,7 @@ const responseData = [
       'https://twitter.com/realjstatham',
       'https://www.facebook.com/JasonStatham/',
       'https://www.instagram.com/jasonstatham/?hl=ru',
+      'https://google.plus'
     ],
   },
   {
